@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task</title>
+  
+</head>
+<body>
+  <label for="initialValue">Enter a Value:</label>
+  <input type="number" id="initialValue" min="1"><br />
+  <button onclick="myfunction()">Submit</button><br />
+  
+  <div id="textboxContainer"></div>
+  <div id="messageContainer"></div>
+</body>
+
+<script>
+    function myfunction() {
+      var initialValue = parseInt(document.getElementById('initialValue').value);
+      var container = document.getElementById('textboxContainer');
+      var messageContainer = document.getElementById('messageContainer');
+      
+      container.innerHTML = ''; 
+      messageContainer.innerHTML = '';  
+      
+      if (isNaN(initialValue) || initialValue < 1) {
+        container.innerHTML = '<p>Enter a value greater than 0.</p>';
+        return;
+      }
+      
+      var newTextbox = document.createElement('input');
+      newTextbox.type = 'number';
+      newTextbox.min = initialValue; 
+      container.appendChild(newTextbox);
+      
+      newTextbox.oninput = function() {
+        var message = '';
+        if (parseInt(newTextbox.value) > initialValue) {
+          message = 'Value is greater than the initial value you entered.';
+        }
+        messageContainer.innerHTML = message;
+      };
+    }
+  </script>
+</html>
