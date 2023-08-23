@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login Page</title>
+</head>
+
+<body>
+  <center>
+    <h2>Login</h2>
+    <form action="index.html" method="post" onclick="return validateForm()">
+      Username (Email): <input type="text" id="username" name="username" required>
+      <p id="usernameError" style="color: red;"></p>
+      <br>
+      Password:
+      <input type="password" id="password" name="password" required>
+      <p id="passwordError" style="color: red;"></p>
+      <br>
+
+      <input type="submit" value="Login">
+    </form>
+  </center>
+
+  <script>
+    function isValidEmail(email) {
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.match(email);
+    }
+
+
+    function validateForm() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      var usernameError = document.getElementById('usernameError');
+      var passwordError = document.getElementById('passwordError');
+
+      usernameError.textContent = "";
+      passwordError.textContent = "";
+
+      if (!username.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        usernameError.textContent = "Invalid email address";
+        return false;
+      }
+
+      if (password.length > 8) {
+        passwordError.textContent = "Password should not be more than 8 characters";
+        return false;
+      }
+
+      return true;
+    }
+
+  </script>
+</body>
+
+</html>

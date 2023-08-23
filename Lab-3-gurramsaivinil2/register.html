@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Bus Ticket Registration</title>
+</head>
+<center>
+
+  <body>
+    <h2>Register for Bus Ticket</h2>
+    <form action="index.html" method="post" onsubmit="return validateForm()">
+      Username:<input type="text" id="username" name="username">
+      <p id="usernameError" style="color: red;"></p>
+      <br>
+
+      Password:<input type="password" id="password" name="password">
+      <p id="passwordError" style="color: red;"></p>
+      <br>
+
+      Retype-Password:<input type="password" id="retype-password" name="retype-password">
+      <p id="retype-passwordError" style="color: red;"></p>
+      <br>
+
+      Address:<input type="text" id="address" name="address">
+      <p id="addressError" style="color: red;"></p>
+      <br>
+
+      Destination:<input type="text" id="destination" name="destination">
+      <p id="destinationerror" style="color: red;"></p>
+      <br>
+
+      Date of Travel:<input type="date" id="travelDate" name="travelDate">
+      <p id="travelDateError" style="color: red;"></p>
+      <br>
+
+      Email:<input type="email" id="email" name="email">
+      <p id="emailError" style="color: red;"></p>
+      <br>
+
+      Phone Number:<input type="tel" id="phone" name="phone">
+      <p id="phoneError" style="color: red;"></p>
+      <br>
+
+      <input type="submit" value="Register">
+    </form>
+</center>
+
+<script>
+  function isValidEmail(email) {
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  function isValidPhoneNumber(phone) {
+    var phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phone);
+  }
+
+  function validateForm() {
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    var retypePassword = document.getElementById('retype-password').value;
+    var address = document.getElementById('address').value;
+    var destination = document.getElementById('destination').value;
+    var email = document.getElementById('email').value;
+    var phone = document.getElementById('phone').value;
+
+    var usernameError = document.getElementById('usernameError');
+    var passwordError = document.getElementById('passwordError');
+    var retypePasswordError = document.getElementById('retype-passwordError');
+    var addressError = document.getElementById('addressError');
+    var destinationError = document.getElementById('destinationerror');
+    var emailError = document.getElementById('emailError');
+    var phoneError = document.getElementById('phoneError');
+
+    usernameError.textContent = "";
+    passwordError.textContent = "";
+    retypePasswordError.textContent = "";
+    addressError.textContent = "";
+    destinationError.textContent = "";
+    emailError.textContent = "";
+    phoneError.textContent = "";
+
+    if (username.length < 6) {
+      usernameError.textContent = "Username should be at least 6 characters";
+      return false;
+    }
+
+    if (password.length < 8) {
+      passwordError.textContent = "Password should be at least 8 characters";
+      return false;
+    }
+
+    if (password !== retypePassword) {
+      retypePasswordError.textContent = "Passwords don't match";
+      return false;
+    }
+
+    if (!isValidEmail(email)) {
+      emailError.textContent = "Invalid email address";
+      return false;
+    }
+
+    if (!isValidPhoneNumber(phone)) {
+      phoneError.textContent = "Invalid phone number (10 digits)";
+      return false;
+    }
+
+    return true;
+  }
+</script>
+</body>
+
+</html>
